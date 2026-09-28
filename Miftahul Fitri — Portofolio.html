@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Miftahul Fitri — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10231c;
+    --ink-soft:#26413a;
+    --paper:#e8e9e1;
+    --paper-2:#f2f2ec;
+    --line:#c8ccc0;
+    --accent:#147c8c;
+    --accent-ink:#0c4f5a;
+    --text:#10231c;
+    --muted:#5a6b64;
+    --panel-text:#dfe6e0;
+    --panel-muted:#9db0a8;
+
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    background:var(--paper);
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#0d1a16;
+      --paper-2:#122420;
+      --line:#2b443c;
+      --text:#e4ebe4;
+      --muted:#93a79f;
+      --accent:#4fb3c2;
+      --accent-ink:#8fd4de;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0d1a16;
+    --paper-2:#122420;
+    --line:#2b443c;
+    --text:#e4ebe4;
+    --muted:#93a79f;
+    --accent:#4fb3c2;
+    --accent-ink:#8fd4de;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:"Karla","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  img{max-width:100%}
+
+  .shell{display:grid;grid-template-columns:minmax(300px,34%) 1fr;min-height:100%}
+
+  /* ---------- kolom kiri ---------- */
+  .card{
+    background:var(--ink);
+    color:var(--panel-text);
+    padding:clamp(28px,4vw,52px);
+    padding-top:calc(clamp(28px,4vw,52px) + env(safe-area-inset-top,0px));
+    position:sticky;top:0;align-self:start;
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    gap:40px;
+  }
+  /* ---------- foto profil, di samping nama ---------- */
+  .headline{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .portrait{flex:0 0 auto}
+  .frame{
+    position:relative;width:clamp(64px,9vw,92px);aspect-ratio:1/1;
+    border:1px solid rgba(223,230,224,.28);border-radius:50%;
+    background:#1a3129;overflow:hidden;
+  }
+  .frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .frame img[hidden]{display:none}
+  .initials{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-family:"Fraunces",Georgia,serif;font-size:clamp(20px,2.4vw,28px);font-weight:300;
+    color:var(--accent-ink);letter-spacing:.04em;
+  }
+  .pickwrap{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .pick{
+    font:inherit;font-size:13px;color:var(--panel-text);
+    background:transparent;border:1px solid rgba(223,230,224,.35);
+    padding:4px 11px;cursor:pointer;transition:background .18s ease,border-color .18s ease;
+  }
+  .pick:hover,.pick:focus-visible{background:rgba(223,230,224,.12);border-color:var(--accent-ink)}
+  .pick.ghost{border-style:dashed;color:var(--panel-muted)}
+  .pickhint{font-size:12.5px;color:var(--panel-muted);margin:8px 0 0}
+
+  .name{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:500;
+    font-size:clamp(36px,5.4vw,72px);
+    line-height:.94;
+    letter-spacing:-.02em;
+    margin:0;
+  }
+  .name span{display:block}
+  .name span:last-child{color:var(--accent-ink);font-style:italic;font-weight:300}
+  .role{margin:18px 0 0;color:var(--panel-muted);max-width:26ch}
+  .npm{
+    margin-top:26px;padding-top:18px;border-top:1px solid rgba(223,230,224,.22);
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  }
+  .npm b{
+    font-family:"Fraunces",Georgia,serif;font-weight:700;letter-spacing:.01em;
+    font-size:clamp(22px,2.4vw,30px);color:#fff;
+  }
+  .npm small{color:var(--panel-muted);font-size:14px}
+
+  nav{display:flex;flex-direction:column;gap:2px;margin-top:8px}
+  nav a{
+    text-decoration:none;color:var(--panel-muted);
+    padding:7px 0;font-size:15px;
+    border-bottom:1px solid transparent;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    transition:color .18s ease;
+  }
+  nav a:hover,nav a:focus-visible{color:#fff}
+  nav a.on{color:#fff}
+  nav a.on::after{content:"";width:22px;height:1px;background:var(--accent-ink)}
+  .sign{color:var(--panel-muted);font-size:13.5px;line-height:1.5}
+
+  /* ---------- kolom kanan ---------- */
+  main{padding:clamp(28px,4.5vw,74px);max-width:860px}
+  section{padding:clamp(30px,4vw,54px) 0;border-bottom:1px solid var(--line)}
+  section:first-child{padding-top:clamp(20px,3vw,34px)}
+  section:last-of-type{border-bottom:0}
+  h2{
+    font-family:"Fraunces",Georgia,serif;font-weight:500;
+    font-size:clamp(26px,3vw,36px);line-height:1.15;margin:0 0 20px;letter-spacing:-.01em;
+  }
+  p{max-width:66ch;margin:0 0 16px}
+  .lead{font-size:clamp(19px,2vw,22px);line-height:1.55;color:var(--text)}
+  .muted{color:var(--muted)}
+
+  /* pendidikan & pengalaman: benar-benar berurutan waktu */
+  .rail{list-style:none;margin:0;padding:0}
+  .rail li{
+    display:grid;grid-template-columns:92px 1fr;gap:18px;
+    padding:16px 0;border-top:1px solid var(--line);
+  }
+  .rail li:first-child{border-top:0;padding-top:0}
+  .rail .yr{font-family:"Fraunces",Georgia,serif;font-size:17px;color:var(--accent);padding-top:2px}
+  .rail h3{margin:0 0 4px;font-size:17.5px;font-weight:700}
+  .rail p{margin:0;font-size:15.5px;color:var(--muted)}
+
+  .skills{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .skills li{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:baseline;
+    border-bottom:1px dotted var(--line);padding-bottom:12px}
+  .skills b{font-weight:700}
+  .skills em{font-style:normal;color:var(--muted);font-size:14.5px}
+
+  .works{display:grid;gap:22px}
+  .work{background:var(--paper-2);border:1px solid var(--line);padding:22px 24px}
+  .work h3{margin:0 0 6px;font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:22px}
+  .work p{margin:0 0 12px;font-size:16px;color:var(--muted)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tags span{font-size:13px;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:2px 11px}
+
+  .contact{display:grid;gap:2px;margin-top:6px}
+  .contact a{
+    display:flex;justify-content:space-between;gap:16px;align-items:center;
+    padding:14px 0;border-top:1px solid var(--line);text-decoration:none;
+  }
+  .contact a:last-child{border-bottom:1px solid var(--line)}
+  .contact a span:last-child{color:var(--accent);font-size:15.5px}
+  .contact a:hover span:last-child,.contact a:focus-visible span:last-child{text-decoration:underline}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* satu momen reveal saat halaman dibuka */
+  @media (prefers-reduced-motion: no-preference){
+    .name span{animation:rise .7s cubic-bezier(.2,.7,.3,1) both}
+    .name span:nth-child(2){animation-delay:.09s}
+    .role,.npm{animation:fade .8s ease .3s both}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+  }
+
+  @media (max-width:880px){
+    .shell{grid-template-columns:1fr}
+    .card{position:static;min-height:auto}
+    nav{flex-direction:row;flex-wrap:wrap;gap:8px 18px}
+    nav a{border:0;padding:4px 0}
+    nav a.on::after{display:none}
+    main{padding:26px 22px 60px}
+    .rail li{grid-template-columns:70px 1fr;gap:12px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="card">
+    <div>
+      <div class="headline">
+        <div class="portrait">
+          <div class="frame">
+            <img id="foto" alt="Foto Miftahul Fitri" hidden>
+            <div class="initials" id="inisial" aria-hidden="true">MF</div>
+          </div>
+          <div class="pickwrap">
+            <input type="file" id="fileFoto" accept="image/*" hidden>
+            <button type="button" class="pick" id="btnFoto">Pilih foto</button>
+            <button type="button" class="pick ghost" id="btnHapus" hidden>Hapus foto</button>
+          </div>
+        </div>
+        <h1 class="name"><span>Miftahul</span><span>Fitri</span></h1>
+      </div>
+      <p class="pickhint" id="hintFoto">Foto tersimpan di browser ini saja.</p>
+      <p class="role">Mahasiswa Teknik Informatika. Belajar membangun aplikasi web yang rapi, cepat, dan mudah dipakai.</p>
+      <div class="npm"><b>24105111117</b><small>Nomor Pokok Mahasiswa</small></div>
+    </div>
+
+    <nav id="nav" aria-label="Isi halaman">
+      <a href="#tentang">Tentang saya</a>
+      <a href="#pendidikan">Pendidikan</a>
+      <a href="#keahlian">Keahlian</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+
+    <p class="sign">Aceh, Indonesia<br>Terbuka untuk magang dan kerja tim proyek.</p>
+  </header>
+
+  <main>
+    <section id="tentang">
+      <h2>Tentang saya</h2>
+      <p class="lead">Saya Miftahul Fitri, mahasiswa Teknik Informatika yang fokus pada pengembangan web dan pengolahan data.</p>
+      <p class="muted">Saya senang mengubah kebutuhan sehari-hari menjadi aplikasi sederhana yang benar-benar dipakai orang: sistem pendataan, katalog, sampai dashboard kecil untuk tugas kuliah. Saat ini saya memperdalam JavaScript, basis data, dan cara menulis kode yang mudah dibaca orang lain.</p>
+    </section>
+
+    <section id="pendidikan">
+      <h2>Pendidikan</h2>
+      <ul class="rail">
+        <li>
+          <div class="yr">2024 —</div>
+          <div>
+            <h3>S1 Teknik Informatika</h3>
+            <p>Fakultas Teknik · Mata kuliah inti: algoritma dan struktur data, basis data, pemrograman web, jaringan komputer.</p>
+          </div>
+        </li>
+        <li>
+          <div class="yr">2021–2024</div>
+          <div>
+            <h3>SMA Negeri</h3>
+            <p>Jurusan IPA. Aktif di ekstrakurikuler komputer dan kegiatan organisasi siswa.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="keahlian">
+      <h2>Keahlian</h2>
+      <ul class="skills">
+        <li><b>HTML, CSS, JavaScript</b><em>Membangun antarmuka web responsif</em></li>
+        <li><b>PHP &amp; MySQL</b><em>Aplikasi CRUD dan perancangan basis data</em></li>
+        <li><b>Python</b><em>Dasar pemrograman dan pengolahan data</em></li>
+        <li><b>Git &amp; GitHub</b><em>Versi kode dan kerja tim</em></li>
+        <li><b>Figma</b><em>Wireframe dan desain antarmuka sederhana</em></li>
+        <li><b>Microsoft Office</b><em>Laporan, presentasi, dan pengolahan angka</em></li>
+      </ul>
+    </section>
+
+    <section id="proyek">
+      <h2>Proyek</h2>
+      <div class="works">
+        <article class="work">
+          <h3>Sistem Informasi Perpustakaan</h3>
+          <p>Aplikasi web untuk mendata buku, anggota, dan peminjaman, lengkap dengan pencarian judul dan rekap denda keterlambatan.</p>
+          <div class="tags"><span>PHP</span><span>MySQL</span><span>Bootstrap</span></div>
+        </article>
+        <article class="work">
+          <h3>Katalog Kopi Gayo</h3>
+          <p>Halaman katalog produk kopi lokal dengan galeri foto, detail varian, dan tombol pemesanan lewat WhatsApp.</p>
+          <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        </article>
+        <article class="work">
+          <h3>Dashboard Nilai Mahasiswa</h3>
+          <p>Ringkasan nilai per mata kuliah dalam bentuk tabel dan grafik, dengan perhitungan indeks prestasi otomatis.</p>
+          <div class="tags"><span>Python</span><span>Pandas</span><span>Visualisasi data</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <h2>Kontak</h2>
+      <p class="muted">Silakan hubungi saya untuk kerja sama proyek, tugas kelompok, atau kesempatan magang.</p>
+      <div class="contact">
+        <a href="mailto:miftahulfitri@email.com"><span>Email</span><span>miftahulfitri@email.com</span></a>
+        <a href="https://wa.me/6281234567890"><span>WhatsApp</span><span>+62 812-3456-7890</span></a>
+        <a href="https://github.com/"><span>GitHub</span><span>github.com/miftahulfitri</span></a>
+        <a href="https://instagram.com/"><span>Instagram</span><span>@miftahulfitri</span></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  (function(){
+    var img = document.getElementById('foto'),
+        ini = document.getElementById('inisial'),
+        inp = document.getElementById('fileFoto'),
+        btn = document.getElementById('btnFoto'),
+        del = document.getElementById('btnHapus'),
+        hint = document.getElementById('hintFoto'),
+        KEY = 'foto-profil';
+
+    function tampil(src){
+      img.src = src; img.hidden = false; ini.hidden = true;
+      del.hidden = false; btn.textContent = 'Ganti foto';
+    }
+    function kosong(){
+      img.removeAttribute('src'); img.hidden = true; ini.hidden = false;
+      del.hidden = true; btn.textContent = 'Pilih foto';
+    }
+
+    try{ var s = localStorage.getItem(KEY); if(s) tampil(s); }catch(e){}
+
+    btn.addEventListener('click', function(){ inp.click(); });
+
+    inp.addEventListener('change', function(){
+      var f = inp.files && inp.files[0];
+      if(!f) return;
+      if(f.size > 3.5 * 1024 * 1024){
+        hint.textContent = 'Ukuran foto lebih dari 3,5 MB. Perkecil dulu, lalu pilih lagi.';
+        return;
+      }
+      var r = new FileReader();
+      r.onload = function(){
+        tampil(r.result);
+        hint.textContent = 'Foto tersimpan di browser ini saja.';
+        try{ localStorage.setItem(KEY, r.result); }
+        catch(e){ hint.textContent = 'Foto tampil sekarang, tapi tidak bisa disimpan. Coba file yang lebih kecil.'; }
+      };
+      r.onerror = function(){ hint.textContent = 'File tidak terbaca. Coba format JPG atau PNG.'; };
+      r.readAsDataURL(f);
+      inp.value = '';
+    });
+
+    del.addEventListener('click', function(){
+      kosong();
+      hint.textContent = 'Foto dihapus. Pilih foto baru kapan saja.';
+      try{ localStorage.removeItem(KEY); }catch(e){}
+    });
+  })();
+
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+    var map = {};
+    links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+    if(!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('on'); });
+          if(map[e.target.id]) map[e.target.id].classList.add('on');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section').forEach(function(s){ obs.observe(s); });
+  })();
+</script>
+</body>
+</html>
